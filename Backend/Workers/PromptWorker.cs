@@ -1,6 +1,7 @@
 using Backend.Database;
 using Backend.Entities;
 using Backend.Messages;
+using Backend.Services;
 using MassTransit;
 
 namespace Backend.Workers;
@@ -9,11 +10,13 @@ namespace Backend.Workers;
 public class PromptWorker : IConsumer<PromptCreated>
 {
     private readonly AppDbContext _context;
+    private readonly GeminiService _aiService;
 
     // Worker db access
-    public PromptWorker(AppDbContext context)
+    public PromptWorker(AppDbContext context, GeminiService aiService)
     {
         _context = context;
+        _aiService = aiService;
     }
 
  public async Task Consume(ConsumeContext<PromptCreated> context)
@@ -39,7 +42,7 @@ public class PromptWorker : IConsumer<PromptCreated>
         await Task.Delay(5000); 
 
         // Zapisanie wyniku 
-        prompt.Result = $"[Wygenerowane przez AI] Oto odpowiedź na Twój tekst: {prompt.Content}";
+        prompt.Result = await _aiService.ProcessPromptAsync(prompt.Content);;
         prompt.Status = PromptStatus.Completed;
     }
     catch (Exception ex)

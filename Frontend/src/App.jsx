@@ -13,12 +13,30 @@ function App() {
     setPrompts(response.data);
   };
 
-  // polling
-  useEffect(() => {
-    fetchPrompts();
-    const interval = setInterval(fetchPrompts, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  // polling (avoiding infinite waiting on backend and constant errors without backend running)
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5279/api/prompts", {
+        timeout: 2000 // Ustaw timeout, żeby nie czekać w nieskończoność
+      });
+      setPrompts(response.data);
+    } catch (error) {
+      // checking if error is a network error (like backend not running) and ignoring it to avoid console spam
+      if (error.code === 'ERR_CONNECTION_REFUSED' || !error.response) {
+        // Backend is not running or not reachable, we can ignore this error in the console
+        return; 
+      }
+      // For other types of errors (like 500, 404, etc.) we log them to the console for debugging purposes
+      console.error("Wystąpił nieoczekiwany błąd:", error);
+    }
+  };
+
+  fetchData();
+  const interval = setInterval(fetchData, 1000);
+  
+  return () => clearInterval(interval);
+}, []);
 
   // new prompt
   const handleSubmit = async (e) => {

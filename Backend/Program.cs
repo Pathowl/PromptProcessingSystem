@@ -4,6 +4,7 @@ using DotNetEnv;
 using Backend.Workers;
 using MassTransit;
 using System.Text.Json.Serialization;
+using Backend.Services;
 
 Env.Load();
 
@@ -30,7 +31,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     {
         // allows sending strings instead of numbers for enums, for better readability in API responses
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    }); // Rejestruje kontrolery
+    }); 
 
 // Add services to the container.
 builder.Services.AddOpenApi();
@@ -51,6 +52,7 @@ builder.Services.AddMassTransit(x =>
         cfg.ConfigureEndpoints(context);
     });
 });
+builder.Services.AddHttpClient<GeminiService>();
 
 var app = builder.Build();
 
@@ -59,6 +61,16 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     // Database migration
     dbContext.Database.Migrate();
+    //Deleting data every backend run for testing purposes, so we always start with an empty table and id=1 for easier checking of statuses
+    try 
+    {
+        dbContext.Database.ExecuteSqlRaw("TRUNCATE TABLE \"Prompts\" RESTART IDENTITY CASCADE;");
+        Console.WriteLine("[SYSTEM] Baza danych gotowa: Tabela 'Prompts' wyczyszczona.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[SYSTEM] Uwaga: Nie udało się wyczyścić tabeli (może jeszcze nie istnieje?): {ex.Message}");
+    }
 }
 
 // Configure the HTTP request pipeline.
