@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # 1. Baza danych PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: prompt-processing-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: SecretPassword123!
+      POSTGRES_DB: PromptDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai_network
+
+  # 2. Kolejka RabbitMQ z panelem zarządzania
+  rabbitmq:
+    image: rabbitmq:4.0-management-alpine
+    container_name: prompt-processing-rabbitmq
+    ports:
+      - "5672:5672"   # Port dla MassTransit
+      - "15672:15672" # Port dla panelu webowego
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - ai_network
+
+volumes:
+  postgres_data:
+
+networks:
+  ai_network:
+    driver: bridge
