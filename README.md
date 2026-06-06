@@ -98,6 +98,10 @@ Wpisz w przeglądarkę: http://localhost:5173/
 
 Wszystko powinno działać! (Przetestowałem na innym kompie od zera ;D)
 
+Dodane są również 2 proste testy, można je odpalić przechodząc do Tests/ i uruchamiając
+```bash
+dotnet test
+```
 ## 🔮 Co planuję poprawić (Future Improvements)
 
 - **Integracja AI:** Połączenie z prawdziwym AI
