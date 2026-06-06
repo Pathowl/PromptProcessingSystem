@@ -32,9 +32,9 @@ Niestety mimo prób okazało się, przynajmniej z tego co znalazłem, że gemini
 ![Zrzut ekranu](images/screen.png)
 Probowałem też nowej rzeczy na modelu z którym nigdy nie pracowałem i w aplikacji, z której też średnio korzystałem :D.<br>
 Chciałem postawić lokalnego LLMa Ollamę, ale po zobaczeniu ze sam silnik bez modelu posiada 3,5GB stwierdziłem, że raczej nie chcielibyście tego specjalnie pobierac żeby odpalić aplikacje. <br>
-myślałem też na zrobieniu flagi do pobrania ollamy lub korzystania z mocka, ale nie chciałem przekombinowywać więc zostałem przy mock Response, jednocześnie zostawiając wykomentowany kod do GeminiService. <br>
+myślałem też na zrobieniu flagi do pobrania ollamy lub korzystania z mocka, ale nie chciałem przekombinowywać więc zostałem przy mock Response, jednocześnie zostawiając kod GeminiService z fallbackiem w przypadku braku klucza. <br>
 Zrobiłem już to na potrzeby tego projektu, po co ma się marnować?<br>
-W przypadku posiadania klucza API Gemini, wystarczy odkomentować kod zawarty w geminiService, i dodać go w appsettings.Development.json w polu GeminiApiKey:
+W przypadku posiadania klucza API Gemini, wystarczy podmienić klucz cleanApiKey w Development/appsettings.Development.json
 
 ```bash
   "Logging": {

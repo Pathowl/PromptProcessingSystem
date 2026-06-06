@@ -55,11 +55,29 @@ export default function App() {
 
   return (
     <div style={{ maxWidth: 800, margin: '60px auto', padding: '0 24px', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ marginBottom: 32, textAlign: 'center' }}>
-        <h1 style={{ fontSize: 32, fontWeight: 600, margin: '0 0 6px', color: '#111' }}>
+      <div style={{ marginBottom: 48, textAlign: 'center', marginTop: 80 }}>
+        <h1 style={{ 
+          fontSize: 40, 
+          fontWeight: 800, 
+          margin: '0 0 12px 0', 
+          color: '#111827', 
+          letterSpacing: '-0.02em' 
+        }}>
           Prompt Processing System
         </h1>
-        <p style={{ ...s.mono, ...s.muted }}>RabbitMQ + MassTransit pipeline</p>
+        <div style={{ 
+          display: 'inline-flex', 
+          alignItems: 'center', 
+          gap: '8px', 
+          background: '#f3f4f6', 
+          padding: '4px 12px', 
+          borderRadius: '20px' 
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3b82f6' }} />
+          <p style={{ ...s.mono, fontSize: 12, color: '#4b5563', margin: 0 }}>
+            RabbitMQ + MassTransit Pipeline
+          </p>
+        </div>
       </div>
 
       <div style={{ ...s.card, marginBottom: 16 }}>
