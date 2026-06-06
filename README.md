@@ -91,4 +91,8 @@ npm run dev
 - **Logging:** Można by dodać zewnętrzna logowania, z reguły robiłem to w Azure insights
 - **Containerization:** Przygotowanie `Dockerfile` dla samej aplikacji, aby można ją było uruchomić w 100% w kontenerach. Były próby ogarnięcia tego, ale za dużo czasu szło na problemy Linuxowe z WSL, więc stwierdziłem ze na potrzeby projektu to pominę.
 
+## Notatnik
+
+Chcesz zobaczyć, jak wyglądała droga od zera do działającego systemu? W pliku [DEVELOPMENT_LOG.md](DEVELOPMENT_LOG.md) prowadziłem zapiski z procesu tworzenia backendu :D
+
 ### Na potrzeby tego projektu przedstawiam readme w dosyć niekonwencjonalnym stylu (nie dość że po polsku, to jeszcze luźno. Profesjonalne Readme zrobiłbym zupełnie inaczej, ale tutaj chyba nie ma co się spinać? :D)
