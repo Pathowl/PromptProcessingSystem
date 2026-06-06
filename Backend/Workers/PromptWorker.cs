@@ -38,9 +38,14 @@ public class PromptWorker : IConsumer<PromptCreated>
         await _context.SaveChangesAsync();
         Console.WriteLine($"[WORKER] Status zmieniony na Processing. Uruchamiam symulację AI...");
 
-        // Symulacja pracy AI
+        // Symulacja czasu przetwarzania AI (5 sekund)
         await Task.Delay(5000); 
-
+        // Symulacja bledu jesli tresc prompta to "error"
+        if (prompt.Content.Trim().ToLower() == "error")
+            {
+                // Error
+                throw new Exception("Symulowany błąd");
+            }
         // Zapisanie wyniku 
         prompt.Result = await _aiService.ProcessPromptAsync(prompt.Content);;
         prompt.Status = PromptStatus.Completed;
