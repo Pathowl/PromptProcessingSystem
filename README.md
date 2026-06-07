@@ -88,7 +88,7 @@ Przejdź do folderu frontendowego, zainstaluj zależności i odpal serwer dewelo
 
 ```bash
 cd Backend
-npm intall
+npm install
 npm run dev
 ```
 
