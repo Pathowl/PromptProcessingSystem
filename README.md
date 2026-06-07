@@ -111,5 +111,5 @@ dotnet test
 
 ## Notatnik
 
-Chcesz zobaczyć, jak wyglądała droga od zera do działającego systemu? W pliku [DEVELOPMENT_LOG.md](DEVELOPMENT_LOG.md) prowadziłem zapiski z procesu tworzenia backendu! <br>
+Chcesz zobaczyć, jak wyglądała droga od zera do działającego systemu? W pliku [DEVELOPMENT_LOG.md](DEVELOPMENT_LOG.md) prowadziłem zapiski z procesu tworzenia backendu! <br> <br>
 PS. Na przestrzeni projektu jak i notatek mozna sie spotkać rownież z komentarzami w języku polskim i angielskm, po prostu zapisywalem w jakim języku najsprawniej mi cos wpadło do głowy, stwierdzilem ze nie bede ujednolicał, myślę, że nie ma to większego znaczenia,<br> Na potrzeby tego projektu przedstawiam readme w dosyć niekonwencjonalnym stylu (nie dość że po polsku, to jeszcze luźno. Profesjonalne Readme zrobiłbym zupełnie inaczej!)
